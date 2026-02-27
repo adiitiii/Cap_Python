@@ -1,0 +1,226 @@
+# Python
+
+Modules→ another name for files (smallest part, var creates)
+
+Library→ Collection of modules
+
+Framework→ 
+
+Library Function are where different functionalities are stored in respective libraries and are categorized into 3 part
+
+1. Keywords→ 35 are there in python total. Special keywords are True, False, None bcz except for these keywords we cant store any other keywords inside a var as a value
+2. Operators→ 7 types of operators  
+    
+    ALARM-BI
+    
+    arithmetic, logical, assignment, relational, membership, Bitwise, identity
+    
+3. inbuilt functions
+
+Memory allocation
+
+| Variable Space/ Stack | Value Space/ Heap |
+| --- | --- |
+| Then the value’s address will be stored in variable space. | On variable creation, first value is stored in value space. |
+|  |  |
+
+address of variable and value will be same except
+
+1. when in int variable value is stored more than 256.
+2. where there is a space char is saved in string 
+
+# Multiple Variable Creation
+
+Infinite variables can be initialized within a singe line like a, b, c, d = 1, 2, 3, 4. But here the number of variables should always be equal to number of values if the count of both does not matches then it will throw an error. ORDER IS MUST
+
+Traceback (most recent call last):
+File "<pyshell#16>", line 1, in <module>
+a, b = 1
+TypeError: cannot unpack non-iterable int object
+
+p = 10, 20, 40 //tuple datatype
+
+### 6 Identifier/variable rules
+
+1. must not be a keyword
+2. must not start with a number
+3. must not contain any special char except ‘_’(underscore).
+4. must not contain any spaces either in beginning or middle 
+5. Can be a combination of uppercase n lowercase (case sensitive)
+6. Acc to industrial standard rules(ISR), var name should always be less than 79 characters(current)
+
+24/2/26
+
+Reference Count:  The number of variables pointing to the same object ie value.
+
+a=b=c=d=4 (reference count of 4 is 4). garbage collector hits when the reference count of a value is 0.
+
+Datatypes (on basis of size of value of data) using “type()” ‘we can check datatype of a variable
+
+1. Single value dt/ Individual dt
+    1. Int :     -infinity to +infinity including 0 except decimal. default value of int is 0
+    2. float:      -infinity to +infinity including 0 including decimal. default value of int is 0 
+    3. complex:    combination of real number as well as imaginary number. a+- bj where a is real part, b is constant and j is underroot of -1. Default val is 0j.
+    4. boolean:    true as 1 and false as 0. default is false
+2. Multi value/ Collection dt
+    1. string
+    2. list
+    3. tuples: whenever you wanna store a single value in tuple then after value give a comma. It is the most secured datatype to send our data form one place to other.
+    4. set: consists of all single value dt and string and tuple00                                                                                                                                                                                                                                                                                  m48 
+    5. dictionary
+
+In multi value datatype, memory spaces or memory layers are created wherein whole string has the same address. By using directory which is inbuilt fn represented using dir tell us how many methods are there in that dt.
+
+Task: uppercase, lowercase, isupper, islower, isdigit, isalpha,
+
+List memory allocation
+
+TASK: 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort’
+
+### Slicing vs Indexing
+
+Picking up a topping from the whole pizza is indexing and taking a whole piece is called slicing. Indexes are picked using every small number or element and slicing is taking a part from that collection.
+
+slicing: varName [ start: stop: step]
+
+Typecasting
+
+List to Dictionary Conditions
+
+1. All values of list must be of multi valued data types only then typecasting from list to dictionary is possible.
+2. length of values must be 2
+
+# Copy Operation
+
+ are of three types → to keep original as well as duplicate collection, majorly performed on lists
+
+1. general copy/normal → new_var = old_var (copies content of var space into next content ie address).
+    - a=10
+    - b=a
+2. shallow copy → introduced because general copy operation was violating the original copy as it was changing it totally. Copies the content of value space from original var to another var
+    - new_var=old_var.copy()
+    
+    z=[10,20,30]
+    
+    > y=z.copy()
+    y
+    [10, 20, 30]
+    y[1]=1000
+    y
+    [10, 1000, 30]
+    z
+    [10, 20, 30]
+    > 
+    
+    but the problem occurs in nested list part bcz if any changes done in nested part is done using shallow copy then both the collections will be changed and so here it violates the objective.
+    
+    > u=[10,20,30,[50,67]]
+    u
+    [10, 20, 30, [50, 67]]
+    v=u.copy()
+    v
+    [10, 20, 30, [50, 67]]
+    u[3][1]=88
+    u
+    [10, 20, 30, [50, 88]]
+    v
+    [10, 20, 30, [50, 88]]
+    > 
+    
+    > u = [10, 20, 30, [50, 88]]
+    u[3].append([23, 44, 12])
+    u
+    [10, 20, 30, [50, 88, [23, 44, 12]]]
+    r=u.copy()
+    r
+    [10, 20, 30, [50, 88, [23, 44, 12]]]
+    r[3][2][0]= 60
+    r
+    [10, 20, 30, [50, 88, [60, 44, 12]]]
+    u
+    [10, 20, 30, [50, 88, [60, 44, 12]]]
+    > 
+    
+    it is getting changed because the address stored in main memory layer it stores the address of nested list and the copied list also stores the same address and so it is happening since the nested address is changing both
+    
+3. deep copy: it goes to the particular line of code and then copies the exact value without going in the value or variable space. Syntax is
+    - import copy
+    - new_var=copy.deepcopy(old_var)
+        
+        dp = [23, 45, 67, 89]
+        
+        > import copy
+        dp2=copy.deepcopy(dp)
+        dp2
+        [23, 45, 67, 89]
+        dp[3]= 80
+        dp2
+        [23, 45, 67, 89]
+        dp
+        [23, 45, 67, 80]
+        dp[3] = [10,20,30,40, [50,60]]
+        dp
+        [23, 45, 67, [10, 20, 30, 40, [50, 60]]]
+        dp2
+        [23, 45, 67, 89]
+        dp[3][4][0] = 100
+        dp
+        [23, 45, 67, [10, 20, 30, 40, [100, 60]]]
+        dp2
+        [23, 45, 67, 89]
+        dp2[3] = ["aditi", [50,60]]
+        dp2
+        [23, 45, 67, ['aditi', [50, 60]]]
+        > 
+
+# Operators
+
+There 7 types of operators: ALARM_BI
+
+> 8//4 (floor division)
+2
+8/4 (quotient without decimal)
+2.0
+8%4 (remainder)
+0
+> 
+
+Precedence in SINGLE VALUE DATATYPES: complex > float > int > bool
+
+Logical Operators: 
+
+AND: always returns the default values except for 9 default values. if OP1 is false then it will return op1 else op2
+
+OR: if OP1 is true then it will return op1 else op2
+
+in bitwise a double equals to for single value data type will check only value but in complex data type it checks for datatype
+
+Identity Operator: is, is not: is operator checks id’s ie the address where they are stored based on which it return true or false
+
+# Control Statements
+
+They decide/control the flow of execution of program
+
+1. Conditionals statements/decisional control statements
+    1. simple if
+    2. if else
+    3. elif
+    4. nested if
+2. Looping control statements
+
+### Output statement
+
+sep: is separator which separates the values passed in  print statement
+
+print(10,20,30)
+10 20 30
+
+> print(10,20,30, sep = ' hi ')
+10 hi 20 hi 30
+> 
+
+end: prints the ending line
+
+a = input()→ input inbuilt function always takes the input in string
+
+eval is a built in function which automatically figures out the datatype of input the user has provided
